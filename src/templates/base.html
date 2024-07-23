@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Chauve Capé - Blog</title>
+
+    {% if not is_production %}
+    <script type="module" src="{{ asset('@vite/client') }}"></script>
+    {% endif %}
+    <link rel="stylesheet" href="{{ asset('scss/base.scss') }}"/>
+    {% block styles %}
+    {% endblock %}
+</head>
+
+<body>
+    <header class="main-header">
+        <h1 class="main-title">Le Chauve Capé</h1>
+        <nav class="main-nav">
+            <ul class="pure-g">
+                <li class="pure-u-1 pure-u-md-1-3"><a href="{{ url_for('main.index') }}">Accueil</a></li>
+                <li class="pure-u-1 pure-u-md-1-3"><a href="{{ url_for('blog.index') }}">Articles</a></li>
+                <li class="pure-u-1 pure-u-md-1-3"><a href="{{ url_for('main.apropos') }}">À propos</a></li>
+            </ul>
+        </nav>
+    </header>
+    {% block content %}
+    {% endblock %}
+</body>
+
+</html>

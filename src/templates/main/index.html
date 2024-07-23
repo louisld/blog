@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ asset('scss/main.scss') }}">
+{% endblock %}
+
+{% block content %}
+<div class="pure-g content">
+    <div class="pure-u-1">
+        <h2>Bienvenue sur le site du Chauve Capé !</h2>
+        
+        <p>Le site est actuellement en cours de construction.</p>
+    </div>
+</div>
+
+<script type="module" src="{{ asset('ts/main.ts') }}"></script>
+{% endblock %}

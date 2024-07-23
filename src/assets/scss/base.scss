@@ -1,0 +1,50 @@
+@import 'purecss/build/pure-min.css';
+@import 'purecss/build/grids-responsive-min.css';
+
+@import 'constants.scss';
+
+// Global rules
+body {
+    background-color: $background-color;
+    color: $text-color;
+}
+a {
+    color: $primary-color;
+}
+.flex-center {
+    justify-content: center;
+}
+.center {
+    text-align: center;
+}
+.content {
+    margin: auto;
+    max-width: $content-max-width;
+}
+
+// Header
+.main-title {
+    font-size: 4em;
+    text-align: center;
+}
+.main-nav {
+    ul {
+        margin: 0;
+        padding: 0;
+        margin: auto;
+        max-width: $content-max-width;
+    }
+    li {
+        text-align: center;
+        font-size: 2em;
+    }
+    li:hover {
+        background-color: $secondary-color;
+    }
+    a {
+        display: inline-block;
+        padding: 1em 0;
+        text-decoration: none;
+        width: 100%;
+    }
+}

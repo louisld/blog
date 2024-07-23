@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ asset('scss/main.scss') }}">
+{% endblock %}
+
+{% block content %}
+<div class="pure-g content">
+    <div class="pure-u-1">
+        <p>C'est le blog.</p>
+    </div>
+</div>
+
+<script type="module" src="{{ asset('ts/main.ts') }}"></script>
+{% endblock %}
