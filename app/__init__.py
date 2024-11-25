@@ -1,14 +1,13 @@
 import os
 import json
+import datetime
 
 import flask
-import flask_sqlalchemy
-
+from flask import session, request, g
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from flask_login import LoginManager, current_user
 from config import Config
-from src.routes import(
-    main,
-    blog
-)
 
 
 class Blog(flask.Flask):
@@ -17,8 +16,9 @@ class Blog(flask.Flask):
         super().__init__(*args, **kwargs)
 
 
-db = flask_sqlalchemy.SQLAlchemy()
-
+db = SQLAlchemy()
+migrate = Migrate()
+login = LoginManager()
 
 def create_app(config: type = Config) -> Blog:
     app = Blog(
@@ -35,9 +35,16 @@ def create_app(config: type = Config) -> Blog:
 
 def load_modules(app: flask.Flask):
     db.init_app(app)
+    migrate.init_app(app, db)
+    login.init_app(app)
 
 
 def define_blueprints(app: flask.Flask):
+    from app.routes import(
+        main,
+        blog,
+        auth
+    )
 
     # Vite assets blueprints
     assets_blueprint = flask.Blueprint(
@@ -76,4 +83,12 @@ def define_blueprints(app: flask.Flask):
     app.register_blueprint(assets_blueprint)
     app.register_blueprint(main.bp)
     app.register_blueprint(blog.bp, url_prefix="/blog")
+    app.register_blueprint(auth.bp, url_prefix="/auth")
 
+# def configure_hook(app: flask.Flask):
+#     @app.before_request
+#     def before_request():
+#         session.permanent = True
+#         app.permanent_session_lifetime = datetime.timedelta(minutes=20)
+#         session.modified = True
+#         g.user = current_user

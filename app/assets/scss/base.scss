@@ -15,11 +15,24 @@ a {
     justify-content: center;
 }
 .center {
-    text-align: center;
+    margin: auto;
 }
 .content {
-    margin: auto;
+    margin-left: 2em;
+    margin-right: 2em;
     max-width: $content-max-width;
+    @media screen and (min-width: $content-max-width) {
+        margin: auto;
+    }
+}
+
+// Customize purecss
+.pure-form {
+    legend {
+        color: $text-color;
+        border-color: $primary-color;
+        font-size: 1.5em;
+    }
 }
 
 // Header

@@ -1,6 +1,6 @@
 import flask
 
-from src.routes.main import bp
+bp = flask.Blueprint("main", __name__)
 
 @bp.route("/")
 def index():

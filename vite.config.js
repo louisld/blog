@@ -5,7 +5,7 @@ import { defineConfig } from "vite";
 import autoprefixer from "autoprefixer";
 
 export default defineConfig({
-    root: path.join(__dirname, "./src/assets"),
+    root: path.join(__dirname, "./app/assets"),
     base: "/assets/",
     build: {
         outDir: path.join(__dirname, "./build/assets/"),
@@ -13,9 +13,9 @@ export default defineConfig({
         assetsDir: "bundled",
         rollupOptions: {
             input: [
-                "src/assets/ts/main.ts",
-                "src/assets/scss/main.scss",
-                "src/assets/scss/base.scss"
+                "app/assets/ts/main.ts",
+                "app/assets/scss/main.scss",
+                "app/assets/scss/base.scss"
             ]
         },
         emptyOutDir: true,
