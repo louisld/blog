@@ -1,12 +1,10 @@
 import os
 import json
-import datetime
 
 import flask
-from flask import session, request, g
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from flask_login import LoginManager, current_user
+from flask_login import LoginManager
 from config import Config
 
 
@@ -40,12 +38,6 @@ def load_modules(app: flask.Flask):
 
 
 def define_blueprints(app: flask.Flask):
-    from app.routes import(
-        main,
-        blog,
-        auth
-    )
-
     # Vite assets blueprints
     assets_blueprint = flask.Blueprint(
         "assets",
@@ -80,10 +72,14 @@ def define_blueprints(app: flask.Flask):
             "is_production": app.config["IS_PRODUCTION"]
         }
 
+    from app.main.routes import main_blueprint
+    from app.auth.routes import auth_blueprint
+    from app.blog.routes import blog_blueprint
+
     app.register_blueprint(assets_blueprint)
-    app.register_blueprint(main.bp)
-    app.register_blueprint(blog.bp, url_prefix="/blog")
-    app.register_blueprint(auth.bp, url_prefix="/auth")
+    app.register_blueprint(main_blueprint)
+    app.register_blueprint(blog_blueprint, url_prefix="/blog")
+    app.register_blueprint(auth_blueprint, url_prefix="/auth")
 
 # def configure_hook(app: flask.Flask):
 #     @app.before_request

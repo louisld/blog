@@ -2,12 +2,12 @@ import flask
 from flask import redirect, url_for, current_app, session, request
 from flask_login import current_user, login_user, logout_user
 
-from app.models.auth import User
-from app.forms.auth import LoginForm
+from app.auth.models import User
+from app.auth.forms import LoginForm
 
-bp = flask.Blueprint("auth", __name__)
+auth_blueprint = flask.Blueprint("auth", __name__)
 
-@bp.route('/login', methods=['GET', 'POST'])
+@auth_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
@@ -31,7 +31,7 @@ def login():
         form=form
     )
 
-@bp.route("/logout")
+@auth_blueprint.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
