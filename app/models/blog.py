@@ -11,7 +11,7 @@ from sqlalchemy.orm import (
 from app import db
 
 if TYPE_CHECKING:
-    from app.auth.models import User
+    from app.models.auth import User
 
 class Article(db.Model):
     __tablename__ = "article"

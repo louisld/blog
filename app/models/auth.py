@@ -17,7 +17,7 @@ from werkzeug.security import (
 from app import db, login
 
 if TYPE_CHECKING:
-    from app.blog.models import Article
+    from app.models.blog import Article
 
 class User(UserMixin, db.Model):
     __tablename__ = "user"
@@ -27,6 +27,7 @@ class User(UserMixin, db.Model):
     display_name: Mapped[str] = mapped_column(sa.String(64))
     email: Mapped[str] = mapped_column(sa.String(256), unique=True)
     password_hash: Mapped[str] = mapped_column(sa.String(256))
+    is_admin: Mapped[bool] = mapped_column(sa.Boolean(), nullable=False, default=False)
 
     # Blog
     articles: Mapped[List["Article"]] = relationship(back_populates="author")

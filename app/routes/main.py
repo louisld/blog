@@ -1,11 +1,11 @@
 import flask
 
-main_blueprint = flask.Blueprint("main", __name__)
+blueprint = flask.Blueprint("main", __name__)
 
-@main_blueprint.route("/")
+@blueprint.route("/")
 def index():
     return flask.render_template("main/index.html")
 
-@main_blueprint.route("/apropos")
+@blueprint.route("/apropos")
 def apropos():
     return flask.render_template("main/apropos.html")
