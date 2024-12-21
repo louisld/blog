@@ -14,7 +14,7 @@ from werkzeug.security import (
     check_password_hash
 )
 
-from app import db, login
+from app import db
 
 if TYPE_CHECKING:
     from app.models.blog import Article
@@ -40,7 +40,3 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return f"<User #{self.id} - {self.display_name or self.username} - {self.email}>"
-    
-@login.user_loader
-def load_user(id: str) -> User:
-    return User.query.get(id)

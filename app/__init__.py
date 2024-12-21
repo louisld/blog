@@ -28,6 +28,10 @@ def create_app(config: type = Config) -> Blog:
 
     load_modules(app)
     define_blueprints(app)
+
+    from app import context
+
+    app.before_request(context.create_request_context)
     
     return app
 
@@ -83,10 +87,9 @@ def define_blueprints(app: flask.Flask):
     app.register_blueprint(blog.blueprint, url_prefix="/blog")
     app.register_blueprint(auth.blueprint, url_prefix="/auth")
 
-# def configure_hook(app: flask.Flask):
-#     @app.before_request
-#     def before_request():
-#         session.permanent = True
-#         app.permanent_session_lifetime = datetime.timedelta(minutes=20)
-#         session.modified = True
-#         g.user = current_user
+from app.models.auth import User
+
+@login.user_loader
+def load_user(id: str) -> User:
+    u = User.query.get(int(id))
+    return u
