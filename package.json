@@ -13,9 +13,16 @@
     "vite": "^5.3.4"
   },
   "dependencies": {
+    "@codemirror/autocomplete": "^6.18.4",
+    "@codemirror/commands": "^6.7.1",
+    "@codemirror/lang-markdown": "^6.3.1",
+    "@codemirror/language": "^6.10.7",
+    "@codemirror/search": "^6.5.8",
+    "@codemirror/state": "^6.5.0",
+    "@codemirror/view": "^6.36.1",
     "autoprefixer": "^10.4.19",
-    "editor.md": "^1.5.0",
     "purecss": "^3.0.0",
-    "sass": "^1.77.8"
+    "sass": "^1.77.8",
+    "thememirror": "^2.0.1"
   }
 }

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ asset('scss/main.scss') }}">
+{% endblock %}
+
+{% block content %}
+<div class="pure-g content">
+    <div class="pure-u-1">
+        <form action="{{ url_for('blog.new') }}" method="post" class="pure-form pure-form-stacked">
+            <fieldset>
+                {{ form.hidden_tag() }}
+
+                {{ form.title.label }}
+                {{ form.title(class_="pure-input-1") }}
+
+                {{ form.slug.label }}
+                {{ form.slug(class_="pure-input-1") }}
+
+                {{ form.content.label }}
+                {{ form.content }}
+
+                {{ form.submit(class_="pure-button pure-button-primary")}}
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<script type="module" src="{{ asset('ts/main.ts') }}"></script>
+<script type="module" src="{{ asset('ts/md_editor.ts') }}"></script>
+{% endblock %}
