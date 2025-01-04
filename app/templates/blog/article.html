@@ -11,9 +11,9 @@
         <header>
             <span class="author">{{ article.author.display_name }}</span>
             le <span class="date">{{ article.created_at | format_date_full }}</span>
-        </div>
+        </header>
 
-        {{ article.content }}
+        {{ article.content | markdown }}
     </header>
 </div>
 

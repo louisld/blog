@@ -33,9 +33,9 @@ def create_app(config: type = Config) -> Blog:
 
     app.before_request(context.create_request_context)
 
-    from app import filters
+    from app.filters import register_filters
 
-    app.jinja_env.filters["format_date_full"] = filters.format_date_full
+    register_filters(app)    
     
     return app
 
