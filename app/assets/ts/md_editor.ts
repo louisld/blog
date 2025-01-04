@@ -2,7 +2,7 @@ import { EditorState } from "@codemirror/state";
 import { markdown } from "@codemirror/lang-markdown";
 import { autocompletion, closeBrackets, closeBracketsKeymap, completionKeymap } from '@codemirror/autocomplete'
 import { defaultKeymap, history, historyKeymap } from '@codemirror/commands'
-import { bracketMatching, defaultHighlightStyle, foldGutter, foldKeymap, syntaxHighlighting } from '@codemirror/language'
+import { bracketMatching, defaultHighlightStyle, foldKeymap, syntaxHighlighting } from '@codemirror/language'
 import { highlightSelectionMatches, searchKeymap } from '@codemirror/search'
 import { drawSelection, dropCursor, EditorView, highlightActiveLine, highlightActiveLineGutter, highlightSpecialChars, keymap, lineNumbers, ViewUpdate } from '@codemirror/view'
 import { dracula } from 'thememirror'
@@ -22,7 +22,6 @@ Array.prototype.forEach.call(editors, (e, i) => {
                 highlightActiveLineGutter(),
                 highlightSpecialChars(),
                 history(),
-                foldGutter(),
                 drawSelection(),
                 dropCursor(),
                 EditorState.allowMultipleSelections.of(true),

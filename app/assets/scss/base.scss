@@ -33,6 +33,19 @@ a {
         border-color: $primary-color;
         font-size: 1.5em;
     }
+    input[type=text],
+    input[type=password]  {
+        background-color: $dracula-background;
+        border: none;
+        box-shadow: none;
+        &:focus {
+            background-color: $dracula-current-line;
+        }
+    }
+    label {
+        font-weight: bold;
+        font-size: 1.5em;
+    }
 }
 
 // Header
