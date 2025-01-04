@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ asset('scss/main.scss') }}">
+{% endblock %}
+
+{% block content %}
+<div class="pure-g content">
+    <div class="pure-u-1 article">
+        <h1>{{ article.title }}</h1>
+        <header>
+            <span class="author">{{ article.author.display_name }}</span>
+            le <span class="date">{{ article.created_at | format_date_full }}</span>
+        </div>
+
+        {{ article.content }}
+    </header>
+</div>
+
+<script type="module" src="{{ asset('ts/main.ts') }}"></script>
+{% endblock %}

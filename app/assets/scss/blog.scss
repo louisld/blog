@@ -1,0 +1,17 @@
+.article {
+    h1 {
+        font-size: 2em;
+        color: $primary-color;
+    }
+    header {
+        margin-bottom: 2em;
+    }
+    .author {
+        color: $green;
+        font-weight: bold;
+        margin-bottom: 2em;;
+    }
+    .date {
+        color: $green; 
+    }
+}

@@ -2,6 +2,7 @@
 @import 'purecss/build/grids-responsive-min.css';
 
 @import 'constants.scss';
+@import 'blog.scss';
 
 // Global rules
 body {
@@ -36,6 +37,7 @@ a {
     input[type=text],
     input[type=password]  {
         background-color: $dracula-background;
+        color: $dracula-foreground;
         border: none;
         box-shadow: none;
         &:focus {

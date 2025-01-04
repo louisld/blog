@@ -15,6 +15,7 @@ export default defineConfig({
             input: [
                 "app/assets/ts/main.ts",
                 "app/assets/ts/editor.ts",
+                "app/assets/scss/blog.scss",
                 "app/assets/scss/main.scss",
                 "app/assets/scss/base.scss"
             ]
