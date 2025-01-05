@@ -7,7 +7,14 @@
 {% block content %}
 <div class="pure-g content">
     <div class="pure-u-1">
-        <p>C'est le blog.</p>
+        <h1>Articles publiés</h1>
+        {% for a in articles %}
+        <div class="pure-g">
+            <div class="pure-u-3-5"><a href="{{ url_for('blog.article', slug=a.slug) }}">{{ a.title }}</a></div>
+            <div class="pure-u-1-5">{{ a.author.display_name }}</div>
+            <div class="pure-u-1-5">{{ a.updated_at | format_date_full}}</div>
+        </div>
+        {% endfor %}
     </div>
 </div>
 

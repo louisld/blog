@@ -7,42 +7,51 @@ import { highlightSelectionMatches, searchKeymap } from '@codemirror/search'
 import { drawSelection, dropCursor, EditorView, highlightActiveLine, highlightActiveLineGutter, highlightSpecialChars, keymap, lineNumbers, ViewUpdate } from '@codemirror/view'
 import { dracula } from 'thememirror'
 
-const editors = document.querySelectorAll('[id ^= "cm-editor-"]');
-Array.prototype.forEach.call(editors, (e, i) => {
-    const textarea = document.getElementById(e.id.substring(10, e.id.length)) as HTMLTextAreaElement;
-    function onEditorChange(update: ViewUpdate) {
-        textarea.innerHTML = update.state.doc.toString();
-    }
+document.addEventListener("DOMContentLoaded", () => {
+    const editors = document.querySelectorAll('[id ^= "cm-editor-"]');
+    Array.prototype.forEach.call(editors, (e, i) => {
+        const textarea = document.getElementById(e.id.substring(10, e.id.length)) as HTMLTextAreaElement;
+        const initialValue = textarea.value;
+        function onEditorChange(update: ViewUpdate) {
+            if(update.docChanged) {
+                textarea.innerHTML = update.state.doc.toString();
+            }
+        }
 
-    new EditorView({
-        parent: e,
-        state: EditorState.create({
-            extensions: [
-                lineNumbers(),
-                highlightActiveLineGutter(),
-                highlightSpecialChars(),
-                history(),
-                drawSelection(),
-                dropCursor(),
-                EditorState.allowMultipleSelections.of(true),
-                syntaxHighlighting(defaultHighlightStyle, { fallback: true}),
-                bracketMatching(),
-                closeBrackets(),
-                autocompletion(),
-                highlightActiveLine(),
-                highlightSelectionMatches(),
-                keymap.of([
-                    ...closeBracketsKeymap,
-                    ...defaultKeymap,
-                    ...searchKeymap,
-                    ...historyKeymap,
-                    ...foldKeymap,
-                    ...completionKeymap,
-                ]),
-                markdown(),
-                dracula,
-                EditorView.updateListener.of(onEditorChange)
-            ],
-        })
+        const editor = new EditorView({
+            parent: e,
+            state: EditorState.create({
+                extensions: [
+                    lineNumbers(),
+                    highlightActiveLineGutter(),
+                    highlightSpecialChars(),
+                    history(),
+                    drawSelection(),
+                    dropCursor(),
+                    EditorState.allowMultipleSelections.of(true),
+                    syntaxHighlighting(defaultHighlightStyle, { fallback: true}),
+                    bracketMatching(),
+                    closeBrackets(),
+                    autocompletion(),
+                    highlightActiveLine(),
+                    highlightSelectionMatches(),
+                    keymap.of([
+                        ...closeBracketsKeymap,
+                        ...defaultKeymap,
+                        ...searchKeymap,
+                        ...historyKeymap,
+                        ...foldKeymap,
+                        ...completionKeymap,
+                    ]),
+                    markdown(),
+                    EditorView.updateListener.of(onEditorChange),
+                    dracula
+                ],
+            })
+        });
+
+        editor.dispatch({
+            changes: { from: 0, insert: initialValue}
+        });
     });
 });

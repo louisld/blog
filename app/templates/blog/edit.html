@@ -7,7 +7,7 @@
 {% block content %}
 <div class="pure-g content">
     <div class="pure-u-1">
-        <form action="{{ url_for('blog.new') }}" method="post" class="pure-form pure-form-stacked">
+        <form action="{{ url_for('blog.edit', slug=form.slug.data) }}" method="post" class="pure-form pure-form-stacked">
             <fieldset>
                 {{ form.hidden_tag() }}
 

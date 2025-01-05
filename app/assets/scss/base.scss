@@ -40,7 +40,7 @@ a {
         color: $dracula-foreground;
         border: none;
         box-shadow: none;
-        &:focus {
+        &:not(:read-only):focus {
             background-color: $dracula-current-line;
         }
     }

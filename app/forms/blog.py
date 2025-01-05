@@ -15,23 +15,33 @@ from markupsafe import (
     Markup
 )
 
+from app.forms.validators import (
+    Slug
+)
+
 class MarkdownWidget(TextArea):
 
     def __call__(self, field, **kwargs):
         kwargs.setdefault("style", "display: none;")
         html = super().__call__(field, **kwargs)
-        return html + Markup(
+
+        return Markup(
             f"<div id='cm-editor-{field.id}'></div>"
-        )
-        
-    
+        ) + html
 
-class MarkdownField(TextAreaField):
-
-    widget = MarkdownWidget()
 
 class NewBlogPostForm(FlaskForm):
     title = StringField('Titre', validators=[DataRequired()])
-    slug = StringField('Slug', validators=[DataRequired()])
-    content = MarkdownField('Contenu')
+    slug = StringField('Slug', validators=[DataRequired(), Slug()])
+    content = TextAreaField('Contenu', widget=MarkdownWidget())
     submit = SubmitField('Créer un nouveau post')
+
+class EditBlogPostForm(FlaskForm):
+    title = StringField('Titre', validators=[DataRequired()])
+    slug = StringField(
+        'Slug',
+        validators=[DataRequired(), Slug()],
+        render_kw={"readonly": True}
+    )
+    content = TextAreaField('Contenu', widget=MarkdownWidget())
+    submit = SubmitField('Mettre à jour le post')
