@@ -49,7 +49,8 @@ def define_blueprints(app: flask.Flask):
     from app.routes import (
         main,
         auth,
-        blog
+        blog,
+        errors
     )
 
     # Vite assets blueprints
@@ -90,6 +91,7 @@ def define_blueprints(app: flask.Flask):
     app.register_blueprint(main.blueprint)
     app.register_blueprint(blog.blueprint, url_prefix="/blog")
     app.register_blueprint(auth.blueprint, url_prefix="/auth")
+    app.register_blueprint(errors.blueprint, url_prefix="/errors")
 
 from app.models.auth import User
 

@@ -76,3 +76,12 @@ a {
         width: 100%;
     }
 }
+
+// Box
+.error-box {
+    width: 100%;
+    color: $red;
+    background-color: rgba($red, 0.2);
+    border: 1px solid $red;
+    padding: 1em;
+}
